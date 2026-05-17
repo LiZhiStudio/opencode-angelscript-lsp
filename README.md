@@ -7,6 +7,7 @@
 让 OpenCode 智能体获取安装说明并自动配置：
 
 ```
+Install and configure Angelscript LSP by following the instructions here:
 curl -s https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/refs/heads/main/docs/install.md
 ```
 
