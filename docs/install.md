@@ -33,7 +33,7 @@ echo "[PLATFORM] $(uname -s)"
 Downloads and runs `setup.ps1` — handles clone, install, build, test, and prints the config:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "iex ((Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/refs/heads/main/setup.ps1').Content)"
+powershell -ExecutionPolicy Bypass -Command "iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/refs/heads/main/setup.ps1'))"
 ```
 
 ### Linux / macOS
