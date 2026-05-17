@@ -6,11 +6,10 @@
     "author": "Angelscript LSP contributors",
     "license": "MIT",
     "engines": {
-        "node": "*"
+        "node": ">=14.0.0"
     },
     "dependencies": {
         "@types/glob": "^7.1.3",
-        "esbuild": "^0.27.3",
         "glob": "^7.1.3",
         "moo": "^0.5.1",
         "vscode-languageserver": "^8.1.0",
@@ -18,9 +17,11 @@
         "vscode-uri": "^3.0.3"
     },
     "devDependencies": {
+        "esbuild": "^0.27.3",
         "typescript": "^4.5.5"
     },
     "scripts": {
+        "postinstall": "node esbuild.js",
         "build": "node esbuild.js"
     }
 }

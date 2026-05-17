@@ -16,6 +16,10 @@
     .\update.ps1 -SourcePath "D:\path\to\vscode-unreal-angelscript"
 #>
 
+# Force UTF-8 to prevent garbled output in non-English locales
+[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
+$OutputEncoding = [System.Text.UTF8Encoding]::new()
+
 param(
     [switch]$Remote,
     [string]$SourcePath = ""
