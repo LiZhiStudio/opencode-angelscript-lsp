@@ -1,0 +1,6 @@
+node_modules
+out
+temp_source
+temp_build
+*.vsix
+*.sisyphus
