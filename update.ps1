@@ -16,7 +16,8 @@
     .\update.ps1 -SourcePath "D:\path\to\vscode-unreal-angelscript"
 #>
 
-# Force UTF-8 to prevent garbled output in non-English locales
+# Force English + UTF-8 to prevent garbled output
+$env:LANG = "en_US.UTF-8"
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
 $OutputEncoding = [System.Text.UTF8Encoding]::new()
 

@@ -12,16 +12,35 @@ After platform detection, use ONLY the commands from the matching section below.
 
 ---
 
-## Step 0: Platform detection (run this first)
+## Step 0: Platform detection and encoding (run this first)
 
+Run ONE of the following blocks depending on the detected platform:
+
+### If Windows (PowerShell):
 ```powershell
-# Windows PowerShell
+# 1. Detect Windows
 $isWindows = $env:OS -eq "Windows_NT"
+
+# 2. Force English + UTF-8 output to avoid garbled characters
+$env:LANG = "en_US.UTF-8"
+chcp 65001 > $null
+$OutputEncoding = [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new()
+
+# 3. Confirm platform
+Write-Host "[PLATFORM] Windows"
 ```
 
+### If Linux / macOS:
 ```bash
-# Linux / macOS
+# 1. Detect platform
 is_windows=$(uname -s | grep -qi "mingw\|msys\|cygwin" && echo "1" || echo "0")
+
+# 2. Ensure UTF-8 locale
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# 3. Output a success marker
+echo "[PLATFORM] Unix"
 ```
 
 ---
@@ -30,9 +49,12 @@ is_windows=$(uname -s | grep -qi "mingw\|msys\|cygwin" && echo "1" || echo "0")
 
 ### If Windows (PowerShell):
 ```powershell
+$env:LANG = "en_US.UTF-8"
 git clone https://github.com/LiZhiStudio/opencode-angelscript-lsp "$env:USERPROFILE\opencode-angelscript-lsp"
 Set-Location -LiteralPath "$env:USERPROFILE\opencode-angelscript-lsp"
 ```
+
+> Do NOT reparse output text — only check `$?` (exit code).
 
 ### If Linux / macOS:
 ```bash
@@ -40,16 +62,20 @@ git clone https://github.com/LiZhiStudio/opencode-angelscript-lsp ~/opencode-ang
 cd ~/opencode-angelscript-lsp
 ```
 
+> Only check the exit code (`$?`). Ignore any warning-looking text.
+
 ---
 
 ## Step 2: Install dependencies
 
 Works the same on all platforms:
 ```bash
-npm install
+npm install --no-audit --no-fund
 ```
 
 This automatically runs `npm run build` (via postinstall) to compile the TypeScript source.
+
+> Only check `$?` (exit code). npm WARN messages are normal.
 
 ---
 
@@ -130,7 +156,7 @@ Results: 3/3 passed
 
 All 3 tests must pass. Exit code 0 = success, 1 = failure.
 
-> **Encoding note:** If you see garbled text in the output, run `chcp 65001` (Windows) or set `LANG=en_US.UTF-8` (Linux/macOS) before running the test.
+> **Note:** If output looks garbled, re-run Step 0 to set UTF-8 encoding first.
 
 ---
 
@@ -141,4 +167,5 @@ All 3 tests must pass. Exit code 0 = success, 1 = failure.
 | `Error: Cannot find module './build/server.js'` | Build skipped | `npm run build` |
 | LSP not starting in OpenCode | `~` used in path | Replace with absolute path |
 | Test hangs | Node.js < 14 | `node --version`; upgrade |
-| PowerShell `&&` error | Bash syntax on Windows | Use `;` or separate lines |
+| Garbled output in CLI | System locale not UTF-8 | Step 0 sets `$env:LANG` + `chcp 65001` |
+| Agent keeps retrying | Misreading output as error | Check exit code, not text |
