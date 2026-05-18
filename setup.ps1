@@ -25,19 +25,28 @@ Write-Host "=== Angelscript LSP Setup ==="
 Write-Host ""
 
 # --- Step 1: Clone ---
-if (Test-Path $RepoDir) {
+$repoExists = Test-Path -LiteralPath $RepoDir
+if ($repoExists -eq $true) {
     Write-Host "[SKIP] Repo already exists at $RepoDir"
 } else {
     Write-Host "[CLONE] Cloning to $RepoDir ..."
     git clone https://github.com/LiZhiStudio/opencode-angelscript-lsp $RepoDir
-    if (-not $?) {
-        Write-Host "[ERROR] git clone failed (exit code: $LASTEXITCODE)"
+    $cloneExitCode = $LASTEXITCODE
+    if ($cloneExitCode -ne 0) {
+        Write-Host "[ERROR] git clone failed (exit code: $cloneExitCode)"
         exit 1
     }
     Write-Host "[OK] Clone complete"
 }
 
 Set-Location -LiteralPath $RepoDir
+
+# Verify critical files exist
+$startJsExists = Test-Path -LiteralPath $RepoDir\start.js
+if ($startJsExists -ne $true) {
+    Write-Host "[ERROR] start.js not found after clone — repo may be incomplete"
+    exit 1
+}
 
 # --- Step 2: Install + Build ---
 Write-Host "[INSTALL] Running npm install ..."

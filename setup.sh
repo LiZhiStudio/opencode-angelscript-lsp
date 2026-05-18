@@ -21,6 +21,12 @@ fi
 
 cd "$REPO_DIR"
 
+# Verify critical files exist
+if [ ! -f "$START_JS" ]; then
+    echo "[ERROR] start.js not found after clone — repo may be incomplete"
+    exit 1
+fi
+
 # --- Step 2: Install + Build ---
 echo "[INSTALL] Running npm install ..."
 npm install --no-audit --no-fund
