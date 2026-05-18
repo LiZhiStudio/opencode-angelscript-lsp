@@ -87,5 +87,6 @@ And add:
 |---------|-------------|------|
 | `Error: Cannot find module './build/server.js'` | Build skipped | Re-run `npm install` in the repo |
 | LSP not starting in OpenCode | Wrong path in config | Use the absolute path from the setup script |
-| Test hangs | Node.js < 14 | `node --version`; upgrade |
+| Test prints `[WARN] Unreal Editor may not be running` | UE not connected (TCP 27099) | Normal; LSP works without it |
+| Test hangs permanently | Node.js < 14 | `node --version`; upgrade |
 | Agent keeps retrying | Misreading output as error | Check exit code, not output text |
