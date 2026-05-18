@@ -35,7 +35,7 @@ echo "[OK] npm install + build complete"
 # --- Step 3: Test ---
 echo ""
 echo "=== Verification ==="
-node test-lsp.mjs
+npm test
 echo "[OK] LSP is working correctly"
 
 # --- Step 4: Print config ---

@@ -22,6 +22,7 @@
     },
     "scripts": {
         "postinstall": "node esbuild.js",
-        "build": "node esbuild.js"
+        "build": "node esbuild.js",
+        "test": "node test-lsp.mjs"
     }
 }

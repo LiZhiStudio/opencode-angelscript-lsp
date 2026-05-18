@@ -85,7 +85,7 @@ And add:
 
 | Symptom | Likely cause | Fix |
 |---------|-------------|------|
-| `Error: Cannot find module './build/server.js'` | Build skipped | Re-run `npm install` in the repo |
+| `Error: Cannot find module './build/server.js'` | Build skipped | Run `npm install && npm test` in the repo |
 | LSP not starting in OpenCode | Wrong path in config | Use the absolute path from the setup script |
 | Test prints `[WARN] Unreal Editor may not be running` | UE not connected (TCP 27099) | Normal; LSP works without it |
 | Test hangs permanently | Node.js < 14 | `node --version`; upgrade |

@@ -60,7 +60,7 @@ Write-Host "[OK] npm install + build complete"
 # --- Step 3: Test ---
 Write-Host ""
 Write-Host "=== Verification ==="
-node test-lsp.mjs
+npm test
 if (-not $?) {
     Write-Host "[WARN] Test failed - check opencode.jsonc configuration"
 } else {
