@@ -8,17 +8,16 @@
 
 ```
 Install and configure Angelscript LSP by following the instructions here:
-curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/docs/install.md
+curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/docs/install-opencode.md
 ```
 
 ### 给 Claude Code 智能体使用
 
-让 Claude Code 智能体一键安装并自动配置：
+让 Claude Code 智能体获取安装说明并自动配置：
 
 ```
-Add the Angelscript LSP marketplace and install the plugin:
-claude plugin marketplace add https://github.com/LiZhiStudio/angelscript-lsp.git
-claude plugin install angelscript-lsp
+Install and configure Angelscript LSP by following the instructions here:
+curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/docs/install-claude-code.md
 ```
 
 ## 目录结构
