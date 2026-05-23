@@ -8,7 +8,7 @@
 
 ```
 Install and configure Angelscript LSP by following the instructions here:
-curl -s https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/refs/heads/main/docs/install.md
+curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/docs/install.md
 ```
 
 ### 给 Claude Code 智能体使用
@@ -17,7 +17,7 @@ curl -s https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/r
 
 ```
 Add the Angelscript LSP marketplace and install the plugin:
-claude plugin marketplace add https://github.com/LiZhiStudio/opencode-angelscript-lsp.git
+claude plugin marketplace add https://github.com/LiZhiStudio/angelscript-lsp.git
 claude plugin install angelscript-lsp
 ```
 

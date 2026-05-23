@@ -3,7 +3,7 @@
     One-command setup: clone + install + configure Angelscript LSP for OpenCode on Windows.
 .DESCRIPTION
     Run this script from any directory. It will:
-    1. Clone the repo to $env:USERPROFILE\opencode-angelscript-lsp (if not already there)
+    1. Clone the repo to $env:USERPROFILE\angelscript-lsp (if not already there)
     2. Run npm install (which auto-builds via postinstall)
     3. Print the absolute path for opencode.jsonc configuration
 .EXAMPLE
@@ -18,7 +18,7 @@ $env:LANG = "en_US.UTF-8"
 $OutputEncoding = [System.Text.UTF8Encoding]::new()
 chcp 65001 > $null
 
-$RepoDir = "$env:USERPROFILE\opencode-angelscript-lsp"
+$RepoDir = "$env:USERPROFILE\angelscript-lsp"
 $StartJs = "$RepoDir\start.js"
 
 Write-Host "=== Angelscript LSP Setup ==="
@@ -30,7 +30,7 @@ if ($repoExists -eq $true) {
     Write-Host "[SKIP] Repo already exists at $RepoDir"
 } else {
     Write-Host "[CLONE] Cloning to $RepoDir ..."
-    git clone https://github.com/LiZhiStudio/opencode-angelscript-lsp $RepoDir
+    git clone https://github.com/LiZhiStudio/angelscript-lsp $RepoDir
     $cloneExitCode = $LASTEXITCODE
     if ($cloneExitCode -ne 0) {
         Write-Host "[ERROR] git clone failed (exit code: $cloneExitCode)"

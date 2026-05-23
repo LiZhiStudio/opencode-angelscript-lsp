@@ -1,8 +1,8 @@
 {
-  "name": "opencode-angelscript-marketplace",
+  "name": "angelscript-marketplace",
   "description": "AngelScript LSP marketplace — provides the angelscript-lsp plugin for Claude Code",
   "owner": {
-    "name": "opencode-angelscript-lsp"
+    "name": "angelscript-lsp"
   },
   "plugins": [
     {

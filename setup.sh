@@ -3,8 +3,8 @@ set -euo pipefail
 
 # One-command setup: clone + install + configure Angelscript LSP for OpenCode on Linux/macOS.
 
-REPO_URL="https://github.com/LiZhiStudio/opencode-angelscript-lsp"
-REPO_DIR="$HOME/opencode-angelscript-lsp"
+REPO_URL="https://github.com/LiZhiStudio/angelscript-lsp"
+REPO_DIR="$HOME/angelscript-lsp"
 START_JS="$REPO_DIR/start.js"
 
 echo "=== Angelscript LSP Setup ==="

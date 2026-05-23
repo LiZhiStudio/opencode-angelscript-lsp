@@ -33,7 +33,7 @@ echo "[PLATFORM] $(uname -s)"
 Downloads and runs `setup.ps1` — handles clone, install, build, test, and prints the config:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -Command "iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/refs/heads/main/setup.ps1'))"
+powershell -ExecutionPolicy Bypass -Command "iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/setup.ps1'))"
 ```
 
 ### Linux / macOS
@@ -41,7 +41,7 @@ powershell -ExecutionPolicy Bypass -Command "iex ((New-Object Net.WebClient).Dow
 Downloads and runs `setup.sh` — handles clone, install, build, test, and prints the config:
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/LiZhiStudio/opencode-angelscript-lsp/refs/heads/main/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/setup.sh)
 ```
 
 ---
@@ -73,9 +73,9 @@ And add:
 
 | Platform | `command` value |
 |----------|----------------|
-| Linux | `["node", "/home/alice/opencode-angelscript-lsp/start.js"]` |
-| macOS | `["node", "/Users/alice/opencode-angelscript-lsp/start.js"]` |
-| Windows | `["node", "C:\\Users\\alice\\opencode-angelscript-lsp\\start.js"]` |
+| Linux | `["node", "/home/alice/angelscript-lsp/start.js"]` |
+| macOS | `["node", "/Users/alice/angelscript-lsp/start.js"]` |
+| Windows | `["node", "C:\\Users\\alice\\angelscript-lsp\\start.js"]` |
 
 > **Windows note:** Use `\\` as path separator in JSON.
 
