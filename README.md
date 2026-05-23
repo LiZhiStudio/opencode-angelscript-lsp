@@ -24,14 +24,19 @@ curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads
 
 ```
 angelscript-lsp/
+├── .claude-plugin/         # Claude Code 插件市场配置
+│   └── marketplace.json    #   定义 LSP 服务器和文件类型映射
 ├── build/                  # esbuild 构建产物
 │   ├── server.js           #   LSP 服务器（已打包，可直接运行）
 │   └── server.js.map       #   Source map（调试用）
+├── docs/                   # 文档
+│   ├── install-claude-code.md  #   Claude Code 智能体安装说明
+│   └── install-opencode.md     #   OpenCode 智能体安装说明
 ├── start.js                # 入口脚本（require('./build/server.js')）
 ├── test-lsp.mjs            # LSP 连接测试脚本
+├── setup.ps1               # Windows 一键安装脚本（clone + install + build + test）
+├── setup.sh                # Linux/macOS 一键安装脚本
 ├── update.ps1              # 一键更新脚本（从源码重新构建）
-├── docs/                   # 文档
-│   └── install.md          #   LLM 智能体安装说明
 ├── .gitignore
 │
 ├── src/                    # TypeScript 源码

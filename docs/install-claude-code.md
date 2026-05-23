@@ -1,10 +1,8 @@
 # Angelscript LSP — Claude Code Installation Guide
 
-## Read before executing
+## Prerequisites
 
-This document MUST be executed by an agent. Claude Code uses a **marketplace plugin system** for LSP servers — do NOT create `.lsp.json`, `.claude/lsp.json`, or any other manual LSP config files.
-
-The correct installation is **two commands**:
+- **Node.js >= 18** — verify with `node --version`
 
 ## Step 1: Add the marketplace
 
@@ -26,6 +24,8 @@ claude plugin list
 
 Should show `angelscript-lsp` with status `enabled`.
 
+**Important:** After installation, restart Claude Code to activate the LSP server. LSP registrations are loaded at session startup and won't take effect in the current session.
+
 ---
 
 ## What NOT to do
@@ -42,3 +42,33 @@ The `.claude-plugin/marketplace.json` in this repository already contains the fu
 1. `claude plugin marketplace add` clones this repo and registers it as a marketplace
 2. `claude plugin install` reads `.claude-plugin/marketplace.json`, finds the `lspServers.angelscript` definition, and enables it for all `.as` files
 3. Claude Code auto-launches the LSP server (`node ./build/server.js --stdio`) when any `.as` file is opened
+
+## Troubleshooting
+
+### LSP not working after install
+
+Restart Claude Code. LSP server registrations are loaded at session startup.
+
+### "No LSP server available for file type: .as"
+
+The plugin may not be installed or enabled. Run `claude plugin list` and confirm `angelscript-lsp` shows `enabled`. If installed, restart Claude Code.
+
+### Server fails to start
+
+Verify Node.js is installed and the server binary works:
+
+```bash
+node ./build/server.js --stdio
+```
+
+Then paste an LSP initialize request to verify the handshake:
+
+```json
+{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"capabilities":{},"rootUri":"file:///path/to/workspace"}}
+```
+
+Note: the message must be prefixed with an LSP `Content-Length` header. Use a test script (see `test-lsp.mjs` in this repo) instead of piping manually.
+
+### Node.js not found
+
+Install Node.js >= 18 from [nodejs.org](https://nodejs.org) or via a version manager (`nvm`, `fnm`, etc.).
