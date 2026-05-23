@@ -1,19 +1,19 @@
-# Angelscript LSP for OpenCode
+# Angelscript LSP
 
-为 [OpenCode](https://github.com/opencode-ai/opencode) 提供的 Angelscript 语言服务器。基于 [Hazelight 的 vscode-unreal-angelscript](https://github.com/Hazelight/vscode-unreal-angelscript) 扩展中的语言服务器构建。
+为 AI 编程 Agent 提供的 Angelscript 语言服务器。基于 [Hazelight 的 vscode-unreal-angelscript](https://github.com/Hazelight/vscode-unreal-angelscript) 扩展中的语言服务器构建，支持 Claude Code、OpenCode 等 Agent 平台。
 
-### 给 OpenCode 智能体使用
+## Agent 安装
 
-让 OpenCode 智能体获取安装说明并自动配置：
+将以下指令发送给 AI Agent，它会自动完成安装配置：
+
+**OpenCode：**
 
 ```
 Install and configure Angelscript LSP by following the instructions here:
 curl -s https://raw.githubusercontent.com/LiZhiStudio/angelscript-lsp/refs/heads/main/docs/install-opencode.md
 ```
 
-### 给 Claude Code 智能体使用
-
-让 Claude Code 智能体获取安装说明并自动配置：
+**Claude Code：**
 
 ```
 Install and configure Angelscript LSP by following the instructions here:
@@ -50,9 +50,24 @@ angelscript-lsp/
 
 ## 快速使用
 
-### 1. 配置 OpenCode LSP
+### 1. 通过 Agent 自动安装（推荐）
 
-在 opencode 配置文件（`opencode.jsonc`）中添加：
+将上方的 Agent 安装指令发送给 Claude Code 或 OpenCode，Agent 会自动完成安装和配置。
+
+### 2. 手动安装并运行测试
+
+```bash
+git clone https://github.com/LiZhiStudio/angelscript-lsp.git
+cd angelscript-lsp
+npm install
+node test-lsp.mjs
+```
+
+正常输出会显示 LSP 返回的 capabilities（自动补全、诊断、悬停提示等能力列表）。
+
+### 3. 手动配置 LSP
+
+**OpenCode** — 在 `opencode.jsonc` 中添加：
 
 ```json
 {
@@ -65,15 +80,9 @@ angelscript-lsp/
 }
 ```
 
-### 2. 运行测试
+**其他支持 LSP 的编辑器** — 配置 LSP 客户端连接到 `node ./build/server.js --stdio`。
 
-```bash
-node test-lsp.mjs
-```
-
-正常输出会显示 LSP 返回的 capabilities（自动补全、诊断、悬停提示等能力列表）。
-
-### 3. 关于 UE 编辑器
+### 4. 关于 UE 编辑器
 
 LSP 在启动时会尝试通过 TCP（默认端口 27099）连接 Unreal Editor。连接成功后即可获得基于引擎类型信息的代码补全和诊断。**编辑器未运行时 LSP 仍可启动**，但类型信息有限。
 
