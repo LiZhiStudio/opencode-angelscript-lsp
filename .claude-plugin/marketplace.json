@@ -1,0 +1,26 @@
+{
+  "name": "opencode-angelscript-marketplace",
+  "description": "AngelScript LSP marketplace — provides the angelscript-lsp plugin for Claude Code",
+  "owner": {
+    "name": "opencode-angelscript-lsp"
+  },
+  "plugins": [
+    {
+      "name": "angelscript-lsp",
+      "description": "AngelScript language server providing hover, completion, go-to-definition, diagnostics, and more for .as files",
+      "version": "1.0.0",
+      "source": "./",
+      "category": "development",
+      "strict": false,
+      "lspServers": {
+        "angelscript": {
+          "command": "node",
+          "args": ["./build/server.js", "--stdio"],
+          "extensionToLanguage": {
+            ".as": "angelscript"
+          }
+        }
+      }
+    }
+  ]
+}

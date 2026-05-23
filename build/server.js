@@ -41222,7 +41222,7 @@ function buildCreateBlueprint(className) {
 }
 
 // src/server.ts
-var connection = (0, import_node4.createConnection)(new import_node4.IPCMessageReader(process), new import_node4.IPCMessageWriter(process));
+var connection = (0, import_node4.createConnection)();
 var unreal;
 var hostname = "127.0.0.1";
 var port = 27099;

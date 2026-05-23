@@ -53,8 +53,8 @@ import {
     buildDisconnect, buildOpenAssets, buildCreateBlueprint
 } from './unreal-buffers';
 
-// Create a connection for the server. The connection uses Node's IPC as a transport
-let connection: Connection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
+// Create a connection for the server. Transport (stdio/ipc/socket) is auto-detected from CLI args
+let connection: Connection = createConnection();
 
 // Create a connection to unreal
 let unreal : Socket;

@@ -75,6 +75,23 @@ else {
 
 Write-Host ">>> Using source: $LangServerRoot" -ForegroundColor Cyan
 
+# ---------- Patch source for stdio transport ----------
+Write-Host ">>> Patching server.ts for stdio transport ..." -ForegroundColor Cyan
+$ServerTs = Join-Path $LangServerRoot "src\server.ts"
+if (Test-Path $ServerTs) {
+    $content = Get-Content $ServerTs -Raw
+    # Replace hardcoded IPC transport with auto-detect (supports --stdio, --node-ipc, --socket)
+    $patched = $content -replace 'createConnection\(new IPCMessageReader\(process\),\s*new IPCMessageWriter\(process\)\)', 'createConnection()'
+    if ($content -ne $patched) {
+        Set-Content $ServerTs -Value $patched -NoNewline
+        Write-Host "  -> server.ts patched for stdio transport" -ForegroundColor Green
+    } else {
+        Write-Host "  -> server.ts already patched or pattern not found" -ForegroundColor Yellow
+    }
+} else {
+    Write-Warning "src/server.ts not found, skipping patch"
+}
+
 # ---------- Install dependencies ----------
 Write-Host ">>> Installing npm dependencies ..." -ForegroundColor Cyan
 Push-Location $LangServerRoot
@@ -132,6 +149,7 @@ if (-not (Test-Path $StartJs)) {
 #!/usr/bin/env node
 const path = require('path');
 const serverPath = path.join(__dirname, 'build', 'server.js');
+process.argv.push('--stdio');
 require(serverPath);
 "@ | Set-Content -Path $StartJs -Encoding utf8
     Write-Host "  -> start.js (created)" -ForegroundColor Green
